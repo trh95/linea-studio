@@ -1,0 +1,6 @@
+{
+  "name": "Linea Studio - Prémium Szempilla Szalon & Ügyfélkezelő",
+  "description": "Exkluzív szempilla-stylist portfólió, személyre szabott 8-lépéses konzultációs kérdőív, adminisztrációs felület és Google Naptár integráció.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
