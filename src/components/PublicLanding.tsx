@@ -41,6 +41,7 @@ import {
   SALON_BAR_ITEMS
 } from '../data/mockData';
 import { ConsultationSection } from './ConsultationSection';
+import { ConsultationButton } from './ConsultationButton';
 
 interface PublicLandingProps {
   portfolio: PortfolioItem[];
@@ -562,14 +563,12 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
           <p className="text-white/80 text-xs sm:text-sm md:text-base max-w-xl mx-auto font-sans leading-relaxed">
             Kérj ingyenes online konzultációt! A teszt kitöltése után személyre szabott styling javaslattal jelentkezem.
           </p>
-          <div className="pt-2 sm:pt-4">
-            <button
+          <div className="pt-2 sm:pt-4 flex justify-center">
+            <ConsultationButton
               onClick={onStartIntake}
-              className="relative overflow-hidden group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-bold uppercase tracking-widest text-[#001D50] bg-gradient-to-r from-[#C6A86A] via-[#DFC285] to-[#C6A86A] hover:from-[#DFC285] hover:to-[#C6A86A] border border-white/60 rounded-full shadow-[0_4px_25px_rgba(198,168,106,0.45)] hover:shadow-[0_6px_32px_rgba(198,168,106,0.7)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-transform before:duration-700"
-            >
-              <Sparkles className="w-4 h-4 text-[#001D50] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-              <span className="relative z-10">Ingyenes Konzultáció Kérése</span>
-            </button>
+              label="Ingyenes Konzultáció Kérése"
+              size="standard"
+            />
           </div>
         </div>
       </section>

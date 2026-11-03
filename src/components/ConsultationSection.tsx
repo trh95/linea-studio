@@ -14,6 +14,7 @@ import React from 'react';
 import { Gift, Sparkles, CheckCircle2 } from 'lucide-react';
 import { HeroMedia } from './hero/HeroMedia';
 import { HeroWaveDecoration } from './hero/HeroWaveDecoration';
+import { ConsultationButton } from './ConsultationButton';
 
 export interface ConsultationSectionProps {
   /**
@@ -166,14 +167,11 @@ export const ConsultationSection: React.FC<ConsultationSectionProps> = ({
             {/* Primary Action Buttons */}
             <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 max-w-xl">
               {onConsultationClick && (
-                <button
-                  type="button"
+                <ConsultationButton
                   onClick={onConsultationClick}
-                  className="relative overflow-hidden group flex items-center justify-center gap-3 w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-bold uppercase tracking-widest text-[#001D50] bg-gradient-to-r from-[#C6A86A] via-[#DFC285] to-[#C6A86A] hover:from-[#DFC285] hover:to-[#C6A86A] border border-white/50 rounded-full shadow-[0_4px_22px_rgba(198,168,106,0.4)] hover:shadow-[0_6px_28px_rgba(198,168,106,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-transform before:duration-700"
-                >
-                  <Sparkles className="w-4 h-4 text-[#001D50] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-                  <span className="relative z-10">Ingyenes Konzultáció Kérése</span>
-                </button>
+                  label="Ingyenes Konzultáció Kérése"
+                  size="standard"
+                />
               )}
             </div>
 

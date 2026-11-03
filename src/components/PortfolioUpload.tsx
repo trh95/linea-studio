@@ -194,10 +194,10 @@ export const PortfolioUpload: React.FC<PortfolioUploadProps> = ({ portfolio, onR
             </div>
           </div>
 
-          {/* Metadata form */}
+          {/* Metadata form - MOBIL-OPTIMALIZÁLÁS (4. Elvárás): text-base md:text-xs (16px mobilon az auto-zoom ellen) és (3. Irányelv): min-h-[44px] touch target */}
           <div className="md:col-span-7 space-y-4">
             <div>
-              <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+              <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                 Kép Megnevezése / Címe *
               </label>
               <input
@@ -206,12 +206,12 @@ export const PortfolioUpload: React.FC<PortfolioUploadProps> = ({ portfolio, onR
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Pl. 3D Soft Light Volume Szett"
-                className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none"
+                className="w-full px-3.5 py-3 min-h-[44px] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-base md:text-xs text-[#001D50] rounded-xl outline-none transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+              <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                 Kategória *
               </label>
               <select
@@ -219,7 +219,7 @@ export const PortfolioUpload: React.FC<PortfolioUploadProps> = ({ portfolio, onR
                 onChange={(e) =>
                   setCategory(e.target.value as 'Természetes' | 'Elegáns' | 'Volume' | 'Különleges & Wispy')
                 }
-                className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none"
+                className="w-full px-3.5 py-3 min-h-[44px] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-base md:text-xs text-[#001D50] rounded-xl outline-none cursor-pointer transition-colors"
               >
                 <option value="Természetes">Természetes</option>
                 <option value="Elegáns">Elegáns</option>
@@ -229,7 +229,7 @@ export const PortfolioUpload: React.FC<PortfolioUploadProps> = ({ portfolio, onR
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+              <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                 Leírás / Styling paraméterek (opcionális)
               </label>
               <textarea
@@ -237,14 +237,15 @@ export const PortfolioUpload: React.FC<PortfolioUploadProps> = ({ portfolio, onR
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Pl. C és D ív, 9-12 mm, szupervékony 0.07 mm selyem pillák..."
-                className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none resize-none font-sans"
+                className="w-full p-3.5 min-h-[96px] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-base md:text-xs text-[#001D50] rounded-xl outline-none resize-none font-sans transition-colors"
               />
             </div>
 
+            {/* MOBIL-OPTIMALIZÁLÁS (3. Irányelv): Érintésbarát akció gomb legalább 44px magassággal */}
             <button
               type="submit"
               disabled={isUploading}
-              className="flex items-center justify-center gap-2 w-full py-3 text-xs font-semibold uppercase tracking-wider text-white bg-[#001D50] hover:bg-[#0A275C] transition-colors rounded-xs shadow-xs disabled:opacity-60"
+              className="flex items-center justify-center gap-2 w-full min-h-[44px] py-3 px-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#001D50] hover:bg-[#0A275C] active:scale-[0.99] transition-all rounded-xl shadow-xs disabled:opacity-60 cursor-pointer"
             >
               <Plus className="w-4 h-4 text-[#C6A86A]" />
               <span>{isUploading ? 'Mentés...' : 'Fotó Hozzáadása a Portfólióhoz'}</span>
@@ -286,15 +287,16 @@ export const PortfolioUpload: React.FC<PortfolioUploadProps> = ({ portfolio, onR
                   </p>
                 )}
 
+                {/* MOBIL-OPTIMALIZÁLÁS (3. Irányelv): Érintésbarát kártya akció gomb min-h-[44px] mérettel */}
                 <div className="flex items-center justify-between pt-3 mt-3 border-t border-[#E8E5DD]">
                   <span className="text-[11px] text-neutral-400 font-mono">
                     #{img.id}
                   </span>
                   <button
                     onClick={() => handleDelete(img.id)}
-                    className="flex items-center gap-1 text-xs text-red-600 hover:text-red-800 transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 min-h-[44px] min-w-[44px] px-3.5 py-2 text-xs font-semibold text-red-600 hover:text-red-800 hover:bg-red-50/80 active:bg-red-100 rounded-lg transition-colors cursor-pointer"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <Trash2 className="w-4 h-4 shrink-0" />
                     <span>Törlés</span>
                   </button>
                 </div>

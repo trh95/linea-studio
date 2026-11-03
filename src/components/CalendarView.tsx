@@ -362,7 +362,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={() => openAddModalForSlot(currentDate)}
-            className="flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#001D50] hover:bg-[#0A275C] transition-all rounded-xs shadow-xs hover:shadow-md cursor-pointer group"
+            className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-semibold uppercase tracking-wider text-[#001D50] hover:text-[#C6A86A] bg-white border border-[#E8E5DD] hover:border-[#C6A86A] rounded-full shadow-2xs hover:shadow-xs transition-all cursor-pointer group"
           >
             <Plus className="w-4 h-4 text-[#C6A86A] group-hover:rotate-90 transition-transform" />
             <span>Új Időpont Rögzítése</span>
@@ -372,7 +372,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
       {/* Notification Toast */}
       {notificationBanner && (
-        <div className="p-4 bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs rounded-xs flex items-center gap-3 shadow-xs animate-fade-in">
+        <div className="p-4 bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs rounded-xl flex items-center gap-3 shadow-xs animate-fade-in">
           <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
           <span className="font-medium">{notificationBanner}</span>
         </div>
@@ -381,27 +381,27 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
       {/* =====================================================================
           2. CALENDAR CONTROL BAR (Nav buttons, Title, View Switcher)
          ===================================================================== */}
-      <div className="bg-white border border-[#E8E5DD] px-5 py-4 rounded-sm shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white/95 backdrop-blur-xs border border-[#E8E5DD] px-4 sm:px-5 py-3.5 rounded-2xl sm:rounded-full shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Navigation buttons + Active range text */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center border border-[#E8E5DD] rounded-xs bg-[#F8F7F2]/50 p-0.5 shadow-2xs">
+          <div className="flex items-center border border-[#E8E5DD] rounded-full bg-[#F0EDE5] p-0.5 shadow-2xs">
             <button
               onClick={handlePrev}
               title="Előző időszak"
-              className="p-1.5 text-[#001D50] hover:bg-white hover:text-[#C6A86A] rounded-xs transition-colors cursor-pointer"
+              className="p-1.5 text-[#001D50] hover:bg-white hover:text-[#C6A86A] rounded-full transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleToday}
-              className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#001D50] hover:bg-white rounded-xs transition-colors cursor-pointer"
+              className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#001D50] hover:bg-white rounded-full transition-colors cursor-pointer"
             >
               Ma
             </button>
             <button
               onClick={handleNext}
               title="Következő időszak"
-              className="p-1.5 text-[#001D50] hover:bg-white hover:text-[#C6A86A] rounded-xs transition-colors cursor-pointer"
+              className="p-1.5 text-[#001D50] hover:bg-white hover:text-[#C6A86A] rounded-full transition-colors cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -414,43 +414,43 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
         {/* View Switcher: Havi (Month) | Heti (Week) | Napi (Day) */}
         <div className="flex items-center self-start md:self-auto">
-          <div className="inline-flex rounded-xs border border-[#E8E5DD] bg-[#F8F7F2] p-1 shadow-2xs">
+          <div className="inline-flex rounded-full border border-[#E8E5DD] bg-[#F0EDE5] p-1 shadow-2xs">
             <button
               type="button"
               onClick={() => setViewMode('month')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-xs transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer ${
                 viewMode === 'month'
-                  ? 'bg-[#001D50] text-[#C6A86A] shadow-xs'
+                  ? 'bg-[#001D50] text-[#DFC285] shadow-xs'
                   : 'text-[#001D50]/80 hover:text-[#001D50] hover:bg-white/60'
               }`}
             >
-              <CalendarDays className="w-3.5 h-3.5" />
+              <CalendarDays className="w-3.5 h-3.5 text-[#C6A86A]" />
               <span>Havi</span>
             </button>
 
             <button
               type="button"
               onClick={() => setViewMode('week')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-xs transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer ${
                 viewMode === 'week'
-                  ? 'bg-[#001D50] text-[#C6A86A] shadow-xs'
+                  ? 'bg-[#001D50] text-[#DFC285] shadow-xs'
                   : 'text-[#001D50]/80 hover:text-[#001D50] hover:bg-white/60'
               }`}
             >
-              <CalendarRange className="w-3.5 h-3.5" />
+              <CalendarRange className="w-3.5 h-3.5 text-[#C6A86A]" />
               <span>Heti</span>
             </button>
 
             <button
               type="button"
               onClick={() => setViewMode('day')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-xs transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer ${
                 viewMode === 'day'
-                  ? 'bg-[#001D50] text-[#C6A86A] shadow-xs'
+                  ? 'bg-[#001D50] text-[#DFC285] shadow-xs'
                   : 'text-[#001D50]/80 hover:text-[#001D50] hover:bg-white/60'
               }`}
             >
-              <Clock className="w-3.5 h-3.5" />
+              <Clock className="w-3.5 h-3.5 text-[#C6A86A]" />
               <span>Napi</span>
             </button>
           </div>
@@ -551,13 +551,14 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
       {/* =====================================================================
           4. VIEW MODE 2: WEEKLY VIEW (7-day columns with hourly timeline)
          ===================================================================== */}
+      {/* MOBIL-OPTIMALIZÁLÁS: Vízszintesen görgethető heti nézet (overflow-x-auto) rögzített első oszloppal (Sticky Column) */}
       {viewMode === 'week' && (
-        <div className="bg-white border border-[#E8E5DD] rounded-sm shadow-sm overflow-x-auto">
-          <div className="min-w-[800px]">
+        <div className="bg-white border border-[#E8E5DD] rounded-xl sm:rounded-sm shadow-sm overflow-x-auto">
+          <div className="min-w-[760px]">
             {/* Week Header Row */}
             <div className="grid grid-cols-8 border-b border-[#E8E5DD] bg-[#F8F7F2] divide-x divide-[#E8E5DD]">
-              {/* Corner time label */}
-              <div className="p-3 text-[11px] font-bold text-center text-[#001D50]/60 uppercase tracking-wider">
+              {/* Corner time label - RÖGZÍTETT ELSŐ OSZLOP (Sticky Column) */}
+              <div className="p-3 text-[11px] font-bold text-center text-[#001D50]/60 uppercase tracking-wider sticky left-0 bg-[#F8F7F2] z-20 shadow-xs border-r border-[#E8E5DD]">
                 Időpont
               </div>
 
@@ -593,8 +594,8 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
                 return (
                   <div key={hour} className="grid grid-cols-8 divide-x divide-[#E8E5DD] min-h-[64px]">
-                    {/* Time slot header */}
-                    <div className="p-2 text-center text-xs font-mono text-[#001D50]/60 bg-[#F8F7F2]/40 flex items-start justify-center pt-2">
+                    {/* Time slot header - RÖGZÍTETT ELSŐ OSZLOP (Sticky Column) */}
+                    <div className="p-2 text-center text-xs font-mono text-[#001D50]/70 bg-[#F8F7F2] flex items-start justify-center pt-2.5 sticky left-0 z-10 shadow-xs border-r border-[#E8E5DD]">
                       {timeLabel}
                     </div>
 
@@ -797,11 +798,17 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
       {/* =====================================================================
           6. APPOINTMENT DETAIL & ACTION MODAL
          ===================================================================== */}
+      {/* =====================================================================
+          6. EVENT DETAIL MODAL - MOBIL-OPTIMALIZÁLÁS: Alsó felugró lap (Bottom Sheet) mobilon
+         ===================================================================== */}
       {selectedEvent && (
-        <div className="fixed inset-0 z-50 bg-[#001D50]/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white border border-[#E8E5DD] max-w-lg w-full rounded-sm shadow-2xl p-6 sm:p-8 animate-scale-up space-y-6">
+        <div className="fixed inset-0 z-50 bg-[#001D50]/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
+          <div className="bg-white border-t sm:border border-[#E8E5DD] max-w-lg w-full rounded-t-3xl sm:rounded-2xl shadow-2xl p-5 sm:p-8 animate-scale-up space-y-5 max-h-[92vh] overflow-y-auto">
+            {/* Mobile drag handle */}
+            <div className="w-12 h-1.5 bg-[#001D50]/20 rounded-full mx-auto mb-2 sm:hidden" />
+
             {/* Modal header */}
-            <div className="flex items-start justify-between border-b border-[#E8E5DD] pb-4">
+            <div className="flex items-start justify-between border-b border-[#E8E5DD] pb-3">
               <div>
                 <span className="text-[10px] uppercase tracking-widest text-[#C6A86A] font-bold">
                   Google Naptár Esemény Részletei
@@ -811,8 +818,10 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                 </h3>
               </div>
               <button
+                type="button"
                 onClick={() => setSelectedEvent(null)}
-                className="text-[#001D50]/60 hover:text-[#001D50] p-1 rounded transition-colors"
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center text-[#001D50]/60 hover:text-[#001D50] rounded-full hover:bg-[#F0EDE5] transition-colors cursor-pointer"
+                aria-label="Bezárás"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -820,7 +829,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
             {/* Event Info Grid */}
             <div className="space-y-3 font-sans text-xs text-[#001D50]/80">
-              <div className="flex items-center gap-3 p-3 bg-[#F8F7F2] rounded-xs border border-[#E8E5DD]">
+              <div className="flex items-center gap-3 p-3 bg-[#F8F7F2] rounded-xl border border-[#E8E5DD]">
                 <Clock className="w-4 h-4 text-[#C6A86A] shrink-0" />
                 <div>
                   <span className="font-bold text-[#001D50] block">Időpont & Dátum:</span>
@@ -837,15 +846,15 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3 bg-[#F8F7F2] rounded-xs border border-[#E8E5DD]">
+              <div className="flex items-center gap-3 p-3 bg-[#F8F7F2] rounded-xl border border-[#E8E5DD]">
                 <User className="w-4 h-4 text-[#C6A86A] shrink-0" />
                 <div>
                   <span className="font-bold text-[#001D50] block">Vendég Neve:</span>
-                  <span>{selectedEvent.client_name}</span>
+                  <span className="font-semibold">{selectedEvent.client_name}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3 bg-[#F8F7F2] rounded-xs border border-[#E8E5DD]">
+              <div className="flex items-center gap-3 p-3 bg-[#F8F7F2] rounded-xl border border-[#E8E5DD]">
                 <Mail className="w-4 h-4 text-[#C6A86A] shrink-0" />
                 <div>
                   <span className="font-bold text-[#001D50] block">E-mail Értesítési Cím:</span>
@@ -854,28 +863,28 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               </div>
 
               {selectedEvent.notes && (
-                <div className="p-3 bg-[#F8F7F2] rounded-xs border border-[#E8E5DD]">
+                <div className="p-3 bg-[#F8F7F2] rounded-xl border border-[#E8E5DD]">
                   <span className="font-bold text-[#001D50] block mb-1">Megjegyzés a vendégtől / stylisttól:</span>
                   <p className="italic text-[#001D50]/80">{selectedEvent.notes}</p>
                 </div>
               )}
 
-              {/* Status Selector */}
+              {/* Status Selector - MOBIL-OPTIMALIZÁLÁS: min. 44px érintőfelület */}
               <div className="pt-2">
                 <span className="font-bold text-[#001D50] block mb-2">Foglalási státusz:</span>
-                <div className="flex items-center gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {(['confirmed', 'pending', 'cancelled'] as const).map((st) => (
                     <button
                       key={st}
                       type="button"
                       onClick={() => handleToggleStatus(selectedEvent, st)}
-                      className={`px-3 py-1.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
+                      className={`min-h-[44px] flex items-center justify-center px-2 py-2 rounded-xl text-[11px] font-semibold uppercase tracking-wider transition-colors cursor-pointer text-center ${
                         selectedEvent.status === st
                           ? st === 'confirmed'
-                            ? 'bg-emerald-600 text-white'
+                            ? 'bg-emerald-600 text-white shadow-xs'
                             : st === 'pending'
-                            ? 'bg-amber-500 text-white'
-                            : 'bg-red-600 text-white'
+                            ? 'bg-amber-500 text-white shadow-xs'
+                            : 'bg-red-600 text-white shadow-xs'
                           : 'bg-[#F8F7F2] text-[#001D50] border border-[#E8E5DD]'
                       }`}
                     >
@@ -886,12 +895,12 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               </div>
             </div>
 
-            {/* Actions: Send reminder / Delete */}
-            <div className="pt-4 border-t border-[#E8E5DD] flex items-center justify-between gap-3">
+            {/* Actions: Send reminder / Delete - MOBIL-OPTIMALIZÁLÁS: egymás alá rendezett gombok mobilon */}
+            <div className="pt-3 border-t border-[#E8E5DD] flex flex-col-reverse sm:flex-row items-center justify-between gap-2.5 sm:gap-3">
               <button
                 type="button"
                 onClick={() => handleDeleteAppointment(selectedEvent.event_id)}
-                className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xs transition-colors cursor-pointer"
+                className="w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 rounded-full transition-colors cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Időpont Törlése</span>
@@ -900,7 +909,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               <button
                 type="button"
                 onClick={() => handleSendReminder(selectedEvent)}
-                className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#001D50] bg-[#C6A86A] hover:bg-[#A98A4D] hover:text-white rounded-xs transition-colors shadow-xs cursor-pointer"
+                className="w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#001D50] bg-[#C6A86A] hover:bg-[#A98A4D] hover:text-white rounded-full transition-colors shadow-xs cursor-pointer"
               >
                 <Bell className="w-3.5 h-3.5" />
                 <span>Emlékeztető Küldése</span>
@@ -911,23 +920,28 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
       )}
 
       {/* =====================================================================
-          7. ADD APPOINTMENT MODAL (Full Booking Form)
+          7. ADD APPOINTMENT MODAL - MOBIL-OPTIMALIZÁLÁS: Alsó felugró lap (Bottom Sheet), 16px inputokkal
          ===================================================================== */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-[#001D50]/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white border border-[#E8E5DD] max-w-lg w-full p-6 md:p-8 rounded-sm shadow-2xl animate-scale-up space-y-5 my-8">
+        <div className="fixed inset-0 z-50 bg-[#001D50]/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto animate-fade-in">
+          <div className="bg-white border-t sm:border border-[#E8E5DD] max-w-lg w-full p-5 sm:p-8 rounded-t-3xl sm:rounded-2xl shadow-2xl animate-scale-up space-y-4 max-h-[92vh] overflow-y-auto">
+            {/* Mobile drag handle */}
+            <div className="w-12 h-1.5 bg-[#001D50]/20 rounded-full mx-auto mb-2 sm:hidden" />
+
             <div className="flex items-center justify-between pb-3 border-b border-[#E8E5DD]">
               <div>
                 <span className="text-[10px] uppercase tracking-widest text-[#C6A86A] font-bold">
                   Új Vendég Foglalása
                 </span>
-                <h3 className="font-serif text-lg font-bold text-[#001D50] mt-0.5">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#001D50] mt-0.5">
                   Időpont Rögzítése Google Naptárba
                 </h3>
               </div>
               <button
+                type="button"
                 onClick={() => setShowAddModal(false)}
-                className="text-[#001D50]/60 hover:text-[#001D50] p-1 rounded"
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center text-[#001D50]/60 hover:text-[#001D50] rounded-full hover:bg-[#F0EDE5] transition-colors cursor-pointer"
+                aria-label="Bezárás"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -935,41 +949,43 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
             <form onSubmit={handleCreateAppointment} className="space-y-4 font-sans text-xs">
               <div>
-                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                   Vendég Neve *
                 </label>
+                {/* MOBIL-OPTIMALIZÁLÁS: text-base (16px) mobilon az automatikus zoom megelőzésére */}
                 <input
                   type="text"
                   required
                   value={formClientName}
                   onChange={(e) => setFormClientName(e.target.value)}
                   placeholder="Pl. Kovács Anna"
-                  className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none transition-colors"
+                  className="w-full px-3.5 py-3 text-base md:text-xs text-[#001D50] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] rounded-xl outline-none transition-colors min-h-[44px]"
                 />
               </div>
 
               <div>
-                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                   Vendég E-mail Címe (Google Calendar Meghívóhoz) *
                 </label>
+                {/* MOBIL-OPTIMALIZÁLÁS: text-base (16px) mobilon */}
                 <input
                   type="email"
                   required
                   value={formClientEmail}
                   onChange={(e) => setFormClientEmail(e.target.value)}
                   placeholder="anna.kovacs@gmail.com"
-                  className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none transition-colors font-mono"
+                  className="w-full px-3.5 py-3 text-base md:text-xs text-[#001D50] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] rounded-xl outline-none transition-colors font-mono min-h-[44px]"
                 />
               </div>
 
               <div>
-                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                   Szolgáltatás / Szett Típusa *
                 </label>
                 <select
                   value={formSummary}
                   onChange={(e) => setFormSummary(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none transition-colors cursor-pointer"
+                  className="w-full px-3.5 py-3 text-base md:text-xs text-[#001D50] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] rounded-xl outline-none transition-colors cursor-pointer min-h-[44px]"
                 >
                   {POPULAR_SERVICES.map((srv) => (
                     <option key={srv} value={srv}>
@@ -979,9 +995,10 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              {/* MOBIL-OPTIMALIZÁLÁS: Egymás alá rendezett mezők mobilon (single column), 2-col táblagépen */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+                  <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                     Dátum *
                   </label>
                   <input
@@ -989,12 +1006,12 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                     required
                     value={formDate}
                     onChange={(e) => setFormDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none font-mono"
+                    className="w-full px-3.5 py-3 text-base md:text-xs text-[#001D50] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] rounded-xl outline-none font-mono min-h-[44px]"
                   />
                 </div>
 
                 <div>
-                  <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+                  <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                     Kezdés Időpontja *
                   </label>
                   <input
@@ -1002,19 +1019,19 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                     required
                     value={formStartTime}
                     onChange={(e) => setFormStartTime(e.target.value)}
-                    className="w-full px-3 py-2 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none font-mono"
+                    className="w-full px-3.5 py-3 text-base md:text-xs text-[#001D50] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] rounded-xl outline-none font-mono min-h-[44px]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                   Várható Időtartam *
                 </label>
                 <select
                   value={formDuration}
                   onChange={(e) => setFormDuration(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none cursor-pointer"
+                  className="w-full px-3.5 py-3 text-base md:text-xs text-[#001D50] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] rounded-xl outline-none cursor-pointer min-h-[44px]"
                 >
                   <option value="60">60 perc (1 óra - pl. Lifting vagy 1D töltés)</option>
                   <option value="90">90 perc (1.5 óra - pl. 2D-3D töltés)</option>
@@ -1024,43 +1041,44 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
               </div>
 
               <div>
-                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+                <label className="block uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
                   Belső Jegyzet / Kívánságok (Opcionális)
                 </label>
                 <textarea
-                  rows={2}
+                  rows={3}
                   value={formNotes}
                   onChange={(e) => setFormNotes(e.target.value)}
                   placeholder="Pl. Érzékeny szemhéj, C-ív, 9-12 mm, kávé növényi tejjel..."
-                  className="w-full px-3.5 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none resize-none"
+                  className="w-full p-3.5 text-base md:text-xs text-[#001D50] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] rounded-xl outline-none resize-none font-sans"
                 />
               </div>
 
-              <div className="flex items-center gap-2 pt-1">
+              <div className="flex items-center gap-3 pt-1">
                 <input
                   type="checkbox"
                   id="notifyGuestCheck"
                   checked={formNotifyGuest}
                   onChange={(e) => setFormNotifyGuest(e.target.checked)}
-                  className="w-4 h-4 accent-[#C6A86A] cursor-pointer"
+                  className="w-5 h-5 accent-[#C6A86A] rounded cursor-pointer shrink-0"
                 />
-                <label htmlFor="notifyGuestCheck" className="text-xs text-[#001D50] cursor-pointer select-none">
+                <label htmlFor="notifyGuestCheck" className="text-xs text-[#001D50] cursor-pointer select-none leading-relaxed">
                   Automatikus Google Calendar meghívó és visszaigazoló levél küldése a vendégnek
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-[#E8E5DD] flex items-center justify-end gap-3">
+              {/* MOBIL-OPTIMALIZÁLÁS: egymás alá rendezett min. 44px-es gombok mobilon */}
+              <div className="pt-3 border-t border-[#E8E5DD] flex flex-col-reverse sm:flex-row items-center justify-end gap-2.5 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#001D50] hover:bg-[#F8F7F2] rounded-xs transition-colors cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-3 min-h-[44px] text-xs font-semibold uppercase tracking-wider text-[#001D50] hover:bg-[#F8F7F2] rounded-full transition-colors cursor-pointer text-center"
                 >
                   Mégse
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex items-center gap-2 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#001D50] hover:bg-[#0A275C] rounded-xs transition-all shadow-xs cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto min-h-[44px] flex items-center justify-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#001D50] hover:bg-[#0A275C] rounded-full transition-all shadow-md cursor-pointer disabled:opacity-50"
                 >
                   <Check className="w-4 h-4 text-[#C6A86A]" />
                   <span>{isSubmitting ? 'Mentés...' : 'Időpont Rögzítése'}</span>

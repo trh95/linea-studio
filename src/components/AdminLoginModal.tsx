@@ -42,12 +42,19 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
     }, 400);
   };
 
+  // MOBIL-OPTIMALIZÁLÁS (5. Elvárás): Mobilon alsó lap (Bottom Sheet - items-end), asztalon középre igazított párbeszédpanel (sm:items-center)
   return (
-    <div className="fixed inset-0 z-50 bg-[#001D50]/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-white border border-[#E8E5DD] max-w-md w-full p-5 sm:p-8 rounded-sm shadow-2xl relative animate-scale-up">
+    <div className="fixed inset-0 z-50 bg-[#001D50]/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+      {/* MOBIL-OPTIMALIZÁLÁS (5. Elvárás): Mobilon 100% szélesség, lekerekített felső sarok (rounded-t-3xl), asztalon max-w-md és rounded-2xl */}
+      <div className="bg-white border border-[#E8E5DD] max-w-md w-full p-6 sm:p-8 rounded-t-3xl sm:rounded-2xl shadow-2xl relative max-h-[92vh] overflow-y-auto animate-scale-up">
+        {/* Mobil húzócsík (Bottom sheet handle) */}
+        <div className="w-12 h-1.5 bg-[#E8E5DD] rounded-full mx-auto mb-4 sm:hidden" />
+
+        {/* MOBIL-OPTIMALIZÁLÁS (3. Irányelv): Min. 44x44px érintőfelületű bezáró gomb */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-700 p-1"
+          className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-700 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-neutral-100 transition-colors cursor-pointer"
+          aria-label="Bezárás"
         >
           <X className="w-5 h-5" />
         </button>
@@ -65,14 +72,15 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded-xs">
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded-lg">
             {error}
           </div>
         )}
 
+        {/* MOBIL-OPTIMALIZÁLÁS (4. és 5. Elvárás): Egymás alatti űrlap, 16px mobilon az auto-zoom ellen, 44px magasság */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+            <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
               Admin E-mail cím
             </label>
             <div className="relative">
@@ -82,13 +90,13 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none"
+                className="w-full pl-10 pr-4 py-3 min-h-[44px] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-base md:text-xs text-[#001D50] rounded-xl outline-none transition-colors"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1">
+            <label className="block text-xs uppercase tracking-wider font-semibold text-[#001D50] mb-1.5">
               Jelszó
             </label>
             <div className="relative">
@@ -98,19 +106,20 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-xs text-[#001D50] rounded-xs outline-none"
+                className="w-full pl-10 pr-4 py-3 min-h-[44px] bg-[#F8F7F2] border border-[#E8E5DD] focus:border-[#C6A86A] text-base md:text-xs text-[#001D50] rounded-xl outline-none transition-colors"
               />
             </div>
           </div>
 
-          <div className="bg-[#F8F7F2] p-3 rounded-xs border border-[#E8E5DD] text-[11px] text-[#001D50]/70">
+          <div className="bg-[#F8F7F2] p-3 rounded-lg border border-[#E8E5DD] text-[11px] text-[#001D50]/70">
             <strong>Demó fiók előtöltve:</strong> <code>admin@lineastudio.hu</code> / <code>SecretPassword123</code>
           </div>
 
+          {/* MOBIL-OPTIMALIZÁLÁS (3. Irányelv): Min. 44px magas kényelmes belépés gomb */}
           <button
             type="submit"
             disabled={isLoading}
-            className="flex items-center justify-center gap-2 w-full py-3 text-xs font-semibold uppercase tracking-wider text-white bg-[#001D50] hover:bg-[#0A275C] rounded-xs transition-colors shadow-xs disabled:opacity-60 cursor-pointer"
+            className="flex items-center justify-center gap-2 w-full min-h-[44px] py-3.5 px-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#001D50] hover:bg-[#0A275C] active:scale-[0.99] rounded-xl transition-all shadow-xs disabled:opacity-60 cursor-pointer"
           >
             <span>{isLoading ? 'Belépés...' : 'Biztonságos Belépés'}</span>
             <ArrowRight className="w-4 h-4 text-[#C6A86A]" />

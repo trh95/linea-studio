@@ -28,16 +28,18 @@ import { apiService } from './services/apiService';
 import { FormResponseItem, PortfolioItem, CalendarAppointment, ServiceDetailItem } from './types';
 import { DETAILED_SERVICES } from './data/mockData';
 
+import { ButtonStyleProvider } from './context/ButtonStyleContext';
+
 export default function App() {
   const [currentView, setCurrentView] = useState<string>('landing');
   const [activeServiceId, setActiveServiceId] = useState<string>('muszempilla');
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
-  // Global state
   const [responses, setResponses] = useState<FormResponseItem[]>([]);
   const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
   const [appointments, setAppointments] = useState<CalendarAppointment[]>([]);
+  const [adminTab, setAdminTab] = useState<'responses' | 'calendar' | 'portfolio'>('responses');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const loadData = async () => {
@@ -93,87 +95,97 @@ export default function App() {
     DETAILED_SERVICES.find((s) => s.id === activeServiceId) || DETAILED_SERVICES[0];
 
   return (
-    <div className="min-h-screen bg-warm-bg text-primary-dark font-sans flex flex-col selection:bg-accent-gold/20 selection:text-primary-dark">
-      {/* Top Navigation Bar with strict 3-zone contract + Dropdown */}
-      <Navbar
-        currentView={currentView}
-        activeServiceId={activeServiceId}
-        onNavigate={handleNavigate}
-        isAdminLoggedIn={isAdminLoggedIn}
-        onOpenLogin={() => setIsLoginModalOpen(true)}
-        onLogout={handleLogout}
-      />
+    <ButtonStyleProvider>
+      <div className="min-h-screen bg-warm-bg text-primary-dark font-sans flex flex-col selection:bg-accent-gold/20 selection:text-primary-dark">
+        {/* Top Navigation Bar with strict 3-zone contract + Dropdown */}
+        <Navbar
+          currentView={currentView}
+          activeServiceId={activeServiceId}
+          onNavigate={handleNavigate}
+          isAdminLoggedIn={isAdminLoggedIn}
+          onOpenLogin={() => setIsLoginModalOpen(true)}
+          onLogout={handleLogout}
+          onRefreshAll={loadData}
+          adminTab={adminTab}
+          onSelectAdminTab={setAdminTab}
+          pendingResponsesCount={responses.filter((r) => !r.is_done).length}
+          appointmentsCount={appointments.length}
+          portfolioCount={portfolio.length}
+        />
 
-      {/* Main View Router */}
-      <main className="flex-1">
-        {/* 1. Kezdőlap */}
-        {currentView === 'landing' && (
-          <PublicLanding
-            portfolio={portfolio}
-            onStartIntake={() => handleNavigate('intake')}
-            onSelectService={(srvId) => handleNavigate('service-detail', srvId)}
-            onNavigatePage={(page) => handleNavigate(page)}
-          />
-        )}
+        {/* Main View Router */}
+        <main className="flex-1">
+          {/* 1. Kezdőlap */}
+          {currentView === 'landing' && (
+            <PublicLanding
+              portfolio={portfolio}
+              onStartIntake={() => handleNavigate('intake')}
+              onSelectService={(srvId) => handleNavigate('service-detail', srvId)}
+              onNavigatePage={(page) => handleNavigate(page)}
+            />
+          )}
 
-        {/* 2. Részletes Szolgáltatás Nézet (Galéria sliderrel, utóápolással, árakkal) */}
-        {currentView === 'service-detail' && (
-          <ServiceDetail
-            service={activeService}
-            onBack={() => handleNavigate('landing')}
-            onStartIntake={() => handleNavigate('intake')}
-            onSelectOtherService={(srvId) => handleNavigate('service-detail', srvId)}
-          />
-        )}
+          {/* 2. Részletes Szolgáltatás Nézet (Galéria sliderrel, utóápolással, árakkal) */}
+          {currentView === 'service-detail' && (
+            <ServiceDetail
+              service={activeService}
+              onBack={() => handleNavigate('landing')}
+              onStartIntake={() => handleNavigate('intake')}
+              onSelectOtherService={(srvId) => handleNavigate('service-detail', srvId)}
+            />
+          )}
 
-        {/* 3. Első alkalom útmutató */}
-        {currentView === 'first-visit' && (
-          <FirstVisitGuide onStartIntake={() => handleNavigate('intake')} />
-        )}
+          {/* 3. Első alkalom útmutató */}
+          {currentView === 'first-visit' && (
+            <FirstVisitGuide onStartIntake={() => handleNavigate('intake')} />
+          )}
 
-        {/* 4. Szalon Házirend */}
-        {currentView === 'house-rules' && <HouseRules />}
+          {/* 4. Szalon Házirend */}
+          {currentView === 'house-rules' && <HouseRules />}
 
-        {/* 5. Gyakran Ismételt Kérdések (GYIK) */}
-        {currentView === 'faq' && (
-          <FaqView onStartIntake={() => handleNavigate('intake')} />
-        )}
+          {/* 5. Gyakran Ismételt Kérdések (GYIK) */}
+          {currentView === 'faq' && (
+            <FaqView onStartIntake={() => handleNavigate('intake')} />
+          )}
 
-        {/* 6. Ingyenes Konzultációs Kérdőív (8-lépéses teszt) */}
-        {currentView === 'intake' && (
-          <IntakeForm
-            onSuccessNavigate={() => handleNavigate('landing')}
-            onViewAdmin={() => {
-              if (isAdminLoggedIn) {
-                handleNavigate('admin');
-              } else {
-                setIsLoginModalOpen(true);
-              }
-            }}
-          />
-        )}
+          {/* 6. Ingyenes Konzultációs Kérdőív (8-lépéses teszt) */}
+          {currentView === 'intake' && (
+            <IntakeForm
+              onSuccessNavigate={() => handleNavigate('landing')}
+              onViewAdmin={() => {
+                if (isAdminLoggedIn) {
+                  handleNavigate('admin');
+                } else {
+                  setIsLoginModalOpen(true);
+                }
+              }}
+            />
+          )}
 
-        {/* 7. Védett Admin Dashboard */}
-        {currentView === 'admin' && (
-          <AdminDashboard
-            responses={responses}
-            portfolio={portfolio}
-            appointments={appointments}
-            onRefreshAll={loadData}
-            onLogout={handleLogout}
-          />
-        )}
+          {/* 7. Védett Admin Dashboard */}
+          {currentView === 'admin' && (
+            <AdminDashboard
+              responses={responses}
+              portfolio={portfolio}
+              appointments={appointments}
+              onRefreshAll={loadData}
+              onLogout={handleLogout}
+              activeTab={adminTab}
+              onTabChange={setAdminTab}
+            />
+          )}
 
-        {/* 8. Backend Kód és Architektúra Ellenőrző */}
-        {currentView === 'backend' && <BackendCodeViewer />}
-      </main>
+          {/* 8. Backend Kód és Architektúra Ellenőrző */}
+          {currentView === 'backend' && <BackendCodeViewer />}
+        </main>
 
-      {/* Admin Login Dialog */}
-      <AdminLoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-        onLoginSuccess={handleLoginSuccess}
-      />
-    </div>
+        {/* Admin Login Dialog */}
+        <AdminLoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+          onLoginSuccess={handleLoginSuccess}
+        />
+      </div>
+    </ButtonStyleProvider>
   );
 }
