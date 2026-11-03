@@ -182,11 +182,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               setIsMobileMenuOpen(false);
               onNavigate('intake');
             }}
-            className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-5 py-1.5 sm:py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-[#001D50] bg-[#C6A86A] hover:bg-[#A98A4D] hover:text-white transition-all shadow-xs rounded-xs shrink-0 cursor-pointer"
+            className="relative overflow-hidden group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-[#001D50] bg-gradient-to-r from-[#C6A86A] via-[#DFC285] to-[#C6A86A] hover:from-[#DFC285] hover:to-[#C6A86A] border border-white/50 rounded-full shadow-[0_4px_18px_rgba(198,168,106,0.38)] hover:shadow-[0_6px_25px_rgba(198,168,106,0.58)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shrink-0 cursor-pointer before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-transform before:duration-700"
           >
-            <Sparkles className="w-3.5 h-3.5 shrink-0" />
-            <span className="hidden sm:inline">Ingyenes Konzultáció</span>
-            <span className="sm:hidden flex flex-col text-left leading-tight">
+            <Sparkles className="w-3.5 h-3.5 shrink-0 text-[#001D50] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+            <span className="hidden sm:inline relative z-10">Ingyenes Konzultáció</span>
+            <span className="sm:hidden flex flex-col text-left leading-tight relative z-10 font-bold">
               <span>Ingyenes</span>
               <span>Konzultáció</span>
             </span>

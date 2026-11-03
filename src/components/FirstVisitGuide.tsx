@@ -41,10 +41,10 @@ export const FirstVisitGuide: React.FC<FirstVisitGuideProps> = ({ onStartIntake 
           <div className="pt-2">
             <button
               onClick={onStartIntake}
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#001D50] bg-[#C6A86A] hover:bg-[#A98A4D] hover:text-white transition-all rounded-xs shadow-md cursor-pointer"
+              className="relative overflow-hidden group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 sm:px-9 py-3.5 text-xs font-bold uppercase tracking-widest text-[#001D50] bg-gradient-to-r from-[#C6A86A] via-[#DFC285] to-[#C6A86A] hover:from-[#DFC285] hover:to-[#C6A86A] border border-white/50 rounded-full shadow-[0_4px_20px_rgba(198,168,106,0.38)] hover:shadow-[0_6px_26px_rgba(198,168,106,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-transform before:duration-700"
             >
-              <Sparkles className="w-4 h-4" />
-              <span>Konzultációs Teszt Kitöltése</span>
+              <Sparkles className="w-4 h-4 text-[#001D50] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <span className="relative z-10">Konzultációs Teszt Kitöltése</span>
             </button>
           </div>
         </div>

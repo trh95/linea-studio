@@ -203,10 +203,11 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
           </div>
           <button
             onClick={onStartIntake}
-            className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-[#001D50] bg-[#C6A86A] hover:bg-[#A98A4D] hover:text-white rounded-xs transition-colors shrink-0 shadow-sm cursor-pointer"
+            className="relative overflow-hidden group flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 text-xs font-bold uppercase tracking-widest text-[#001D50] bg-gradient-to-r from-[#C6A86A] via-[#DFC285] to-[#C6A86A] hover:from-[#DFC285] hover:to-[#C6A86A] border border-white/50 rounded-full shadow-[0_4px_18px_rgba(198,168,106,0.38)] hover:shadow-[0_6px_25px_rgba(198,168,106,0.58)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shrink-0 cursor-pointer before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-transform before:duration-700"
           >
-            <span>Ingyenes Konzultáció</span>
-            <ChevronRight className="w-4 h-4" />
+            <Sparkles className="w-3.5 h-3.5 text-[#001D50] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+            <span className="relative z-10">Ingyenes Konzultáció</span>
+            <ChevronRight className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
       </section>
@@ -564,10 +565,10 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({
           <div className="pt-2 sm:pt-4">
             <button
               onClick={onStartIntake}
-              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 text-xs font-bold uppercase tracking-widest text-[#001D50] bg-[#C6A86A] hover:bg-white transition-all shadow-lg rounded-xs cursor-pointer"
+              className="relative overflow-hidden group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-bold uppercase tracking-widest text-[#001D50] bg-gradient-to-r from-[#C6A86A] via-[#DFC285] to-[#C6A86A] hover:from-[#DFC285] hover:to-[#C6A86A] border border-white/60 rounded-full shadow-[0_4px_25px_rgba(198,168,106,0.45)] hover:shadow-[0_6px_32px_rgba(198,168,106,0.7)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 cursor-pointer before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-transform before:duration-700"
             >
-              <Sparkles className="w-4 h-4" />
-              <span>Ingyenes Konzultáció Kérése</span>
+              <Sparkles className="w-4 h-4 text-[#001D50] group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+              <span className="relative z-10">Ingyenes Konzultáció Kérése</span>
             </button>
           </div>
         </div>
